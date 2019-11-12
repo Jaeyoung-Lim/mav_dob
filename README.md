@@ -3,6 +3,8 @@
 
 Disturbance Observer based trajectory tracking for MAVs
 
+![dobdemo](mav_dob/resource/dob_controller.gif)
+
 ## Nodes
 - dob_controller
 - edob_controller (WIP)
