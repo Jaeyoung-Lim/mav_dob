@@ -34,7 +34,7 @@ You will need to source the PX4 environment in every new terminal you open to la
 
 ### Installing mav_dob
 
-Create a catkin workspace:
+###### Create a catkin workspace:
 
 This folder will probably be already created since the previous process would have created it. If it is not present, do:
 
