@@ -1,0 +1,25 @@
+<package>
+  <name>mav_dob</name>
+  <version>0.0.1</version>
+  <description>Disturbance Observer based trajectory tracking for MAVs</description>
+
+  <maintainer email="jaeyoung@auterion.com">Jaeyoung Lim</maintainer>
+
+  <author>Jaeyoung Lim</author>
+  <author>Hyuntae Kim</author>
+
+  <license>BSD-3</license>
+
+  <url type="website">https://github.com/Jaeyoung-Lim/mav_dob</url>
+  <url type="bugtracker">https://github.com/Jaeyoung-Lim/mav_dob/issues</url>
+
+  <!-- Dependencies which this package needs to build itself. -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed after this package is compiled. -->
+  <run_depend>dob_controller</run_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+</package>
