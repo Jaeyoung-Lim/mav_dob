@@ -27,8 +27,6 @@ DisturbanceObserverCtrl::DisturbanceObserverCtrl(const ros::NodeHandle& nh, cons
   nh_.param<double>("/dob_controller/dob/a1_x", a1_x, 10.0);
   nh_.param<double>("/dob_controller/dob/a1_y", a1_y, 10.0);
   nh_.param<double>("/dob_controller/dob/a1_z", a1_z, 10.0);
-  nh_.param<double>("/dob_controller/dob/a1_y", a1_y, 10.0);
-  nh_.param<double>("/dob_controller/dob/a1_z", a1_z, 10.0);
   nh_.param<double>("/dob_controller/dob/tau_x", tau_x, 10.0);
   nh_.param<double>("/dob_controller/dob/tau_y", tau_y, 10.0);
   nh_.param<double>("/dob_controller/dob/tau_z", tau_z, 10.0);
