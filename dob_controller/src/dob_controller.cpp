@@ -8,12 +8,14 @@ using namespace std;
 DisturbanceObserverCtrl::DisturbanceObserverCtrl(const ros::NodeHandle& nh, const ros::NodeHandle& nh_private):
   nh_(nh),
   nh_private_(nh_private),
-  geometric_controller_(nh, nh_private) {
+  geometric_controller_(nh, nh_private),
+  control_dt_(0.01),
+  status_dt_(1.0) {
 
-  cmdloop_timer_ = nh_.createTimer(ros::Duration(0.01), &DisturbanceObserverCtrl::CmdLoopCallback, this); // Define timer for constant loop rate
-  statusloop_timer_ = nh_.createTimer(ros::Duration(1), &DisturbanceObserverCtrl::StatusLoopCallback, this); // Define timer for constant loop rate
+  cmdloop_timer_ = nh_.createTimer(ros::Duration(control_dt_), &DisturbanceObserverCtrl::CmdLoopCallback, this); // Define timer for constant loop rate
+  statusloop_timer_ = nh_.createTimer(ros::Duration(status_dt_), &DisturbanceObserverCtrl::StatusLoopCallback, this); // Define timer for constant loop rate
 
-   double Kpos_x_, Kpos_y_, Kpos_z_, Kvel_x_, Kvel_y_, Kvel_z_;
+  double Kpos_x_, Kpos_y_, Kpos_z_, Kvel_x_, Kvel_y_, Kvel_z_;
 
   nh_.param<double>("/dob_controller/Kp_x", Kpos_x_, 8.0);
   nh_.param<double>("/dob_controller/Kp_y", Kpos_y_, 8.0);
@@ -76,14 +78,13 @@ void DisturbanceObserverCtrl::StatusLoopCallback(const ros::TimerEvent& event){
 Eigen::Vector3d DisturbanceObserverCtrl::DisturbanceObserver(Eigen::Vector3d pos_error, Eigen::Vector3d acc_setpoint){
 
   Eigen::Vector3d acc_input, yq, yp, d_hat;
-  double control_dt = 0.01;
 
   for(int i = 0; i < acc_input.size(); i++){
     //Update dob states
-    p_.at(i)(0) = p_.at(i)(0) + p_.at(i)(1) * control_dt;
-    p_.at(i)(1) = (-a0(i) * control_dt / std::pow(tau(i),2)) * p_.at(i)(0) + (1 - a1(i) * control_dt / tau(i)) *p_.at(i)(1) + control_dt * acc_setpoint(i);
-    q_.at(i)(0) = q_.at(i)(0) + control_dt * q_.at(i)(1);
-    q_.at(i)(1) = (-a0(i)/std::pow(tau(i), 2)) * control_dt * q_.at(i)(0) + (1 - a1(i) * control_dt / tau(i)) * q_.at(i)(1) + control_dt * pos_error(i);
+    p_.at(i)(0) = p_.at(i)(0) + p_.at(i)(1) * control_dt_;
+    p_.at(i)(1) = (-a0(i) * control_dt_ / std::pow(tau(i),2)) * p_.at(i)(0) + (1 - a1(i) * control_dt_ / tau(i)) *p_.at(i)(1) + control_dt_ * acc_setpoint(i);
+    q_.at(i)(0) = q_.at(i)(0) + control_dt_ * q_.at(i)(1);
+    q_.at(i)(1) = (-a0(i)/std::pow(tau(i), 2)) * control_dt_ * q_.at(i)(0) + (1 - a1(i) * control_dt_ / tau(i)) * q_.at(i)(1) + control_dt_ * pos_error(i);
     //Calculate outputs
     yp(i) = (a0(i) / pow(tau(i), 2)) * p_.at(i)(0);
     yq(i) = (-a1(i)*a0(i) / std::pow(tau(i), 3))*q_.at(i)(0) - (std::pow(a0(i),2) / std::pow(tau(i), 4)) * q_.at(i)(1) + a0(i) / pow(tau(i),2) * pos_error(i);
