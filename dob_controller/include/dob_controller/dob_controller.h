@@ -25,6 +25,8 @@ class DisturbanceObserverCtrl
 
     double a0_x, a0_y, a0_z, a1_x, a1_y, a1_z, tau_x, tau_y, tau_z;
     double dhat_max, dhat_min;
+    double control_dt_;
+    double status_dt_;
  
     std::vector<Eigen::Vector2d> q_, p_;
 
