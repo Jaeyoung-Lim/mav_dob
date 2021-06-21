@@ -1,7 +1,7 @@
 - git:
     local-name: mavros
     uri: https://github.com/mavlink/mavros.git
-    version: c373472c75310d1b76f40d2e4ea8b0b72f894e36
+    version: 8b9a32ac323e79cef826ee5f39aeb07a1162d240
 - git:
     local-name: catkin_simple
     uri : https://github.com/catkin/catkin_simple.git
