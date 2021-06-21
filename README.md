@@ -57,7 +57,7 @@ wstool automates the installation of dependencies and updates all packages. If y
 
 ```bash
 cd ~/catkin_ws
-wstool merge -t src src/mavros_dob/dependencies.rosinstall
+wstool init src src/mav_dob/dependencies.rosinstall
 wstool update -t src -j4
 rosdep install --from-paths src --ignore-src -y --rosdistro $ROS_DISTRO
 catkin build
