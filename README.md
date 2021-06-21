@@ -1,5 +1,5 @@
 # mav_dob
-[![Build Status](https://travis-ci.com/Jaeyoung-Lim/mav_dob.svg?token=e4sM7TYzGkapLy3jzCqJ&branch=master)](https://travis-ci.com/Jaeyoung-Lim/mav_dob)
+[![Build Test](https://github.com/Jaeyoung-Lim/mav_dob/actions/workflows/build_test.yml/badge.svg)](https://github.com/Jaeyoung-Lim/mav_dob/actions/workflows/build_test.yml)
 
 Disturbance Observer based trajectory tracking for MAVs
 
