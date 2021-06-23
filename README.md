@@ -1,5 +1,5 @@
 # mav_dob
-[![Build Status](https://travis-ci.com/Jaeyoung-Lim/mav_dob.svg?token=e4sM7TYzGkapLy3jzCqJ&branch=master)](https://travis-ci.com/Jaeyoung-Lim/mav_dob)
+[![Build Test](https://github.com/Jaeyoung-Lim/mav_dob/actions/workflows/build_test.yml/badge.svg)](https://github.com/Jaeyoung-Lim/mav_dob/actions/workflows/build_test.yml)
 
 Disturbance Observer based trajectory tracking for MAVs
 
@@ -57,7 +57,7 @@ wstool automates the installation of dependencies and updates all packages. If y
 
 ```bash
 cd ~/catkin_ws
-wstool merge -t src src/mavros_dob/dependencies.rosinstall
+wstool init src src/mav_dob/dependencies.rosinstall
 wstool update -t src -j4
 rosdep install --from-paths src --ignore-src -y --rosdistro $ROS_DISTRO
 catkin build
